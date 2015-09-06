@@ -33,7 +33,6 @@ typedef enum : NSUInteger {
 @property (nonatomic) ALAnimatedButtonPosition animatedButtonPosition;
 @property (nonatomic) CGFloat animatedButtonVerticalMargin;
 @property (nonatomic) CGFloat animatedButtonHorizontalMargin;
-@property (nonatomic, weak) UIView * animatedButtonParentView;
 
 #pragma mark - Appearance
 

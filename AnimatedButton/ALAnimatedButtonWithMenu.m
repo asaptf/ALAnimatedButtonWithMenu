@@ -12,6 +12,7 @@
     BOOL isOpened;
     
     NSMutableArray * buttonArray;
+    UIView * animatedButtonParentView;
 }
 
 #pragma mark - Constructors
@@ -23,7 +24,7 @@
         [self initialize];
         
         [self setImage:buttonImage forState:UIControlStateNormal];
-        _animatedButtonParentView = parentView;
+        animatedButtonParentView = parentView;
         [self updateRect];
         
         [self addTarget:self action:@selector(mainButtonTap:) forControlEvents:UIControlEventTouchUpInside];
@@ -64,14 +65,14 @@
         x = _animatedButtonHorizontalMargin;
         y = _animatedButtonVerticalMargin;
     } else if (_animatedButtonPosition == ALAnimatedButtonPositionTopRight) {
-        x = _animatedButtonParentView.frame.size.width - width - _animatedButtonHorizontalMargin;
+        x = animatedButtonParentView.frame.size.width - width - _animatedButtonHorizontalMargin;
         y = _animatedButtonVerticalMargin;
     } else if (_animatedButtonPosition == ALAnimatedButtonPositionBottomLeft) {
         x = _animatedButtonHorizontalMargin;
-        y = _animatedButtonParentView.frame.size.height - height - _animatedButtonVerticalMargin;
+        y = animatedButtonParentView.frame.size.height - height - _animatedButtonVerticalMargin;
     } else {
-        x = _animatedButtonParentView.frame.size.width - width - _animatedButtonHorizontalMargin;
-        y = _animatedButtonParentView.frame.size.height - height - _animatedButtonVerticalMargin;
+        x = animatedButtonParentView.frame.size.width - width - _animatedButtonHorizontalMargin;
+        y = animatedButtonParentView.frame.size.height - height - _animatedButtonVerticalMargin;
     }
     
     CGRect frame = CGRectMake(x, y, width, height);
