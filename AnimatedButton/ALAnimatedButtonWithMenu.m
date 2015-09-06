@@ -18,10 +18,15 @@
 #pragma mark - Constructors
 
 - (id) initWithImage:(UIImage *) buttonImage inView:(UIView *) parentView {
+    return [self initWithImage:buttonImage andPosition:ALAnimatedButtonPositionBottomRight inView:parentView];
+}
+
+- (id) initWithImage:(UIImage *) buttonImage andPosition:(ALAnimatedButtonPosition) position inView:(UIView *) parentView {
     self = [super init];
     
     if (self) {
         [self initialize];
+        _animatedButtonPosition = position;
         
         [self setImage:buttonImage forState:UIControlStateNormal];
         animatedButtonParentView = parentView;
@@ -34,6 +39,7 @@
     
     return self;
 }
+
 
 #pragma mark - Initialization
 
@@ -103,6 +109,14 @@
 //    CGFloat relY = _animatedButtonRadius * cos(M_PI / (float) 2 + M_PI / (float)(2 * totalButtons) * (buttonId - 1) );
     CGFloat relX = _animatedButtonRadius * sin( M_PI_2 + M_PI / (float)(2 * totalButtons) * (buttonId - 1) );
     CGFloat relY = _animatedButtonRadius * cos( M_PI_2 + M_PI / (float)(2 * totalButtons) * (buttonId - 1) );
+    
+    if (_animatedButtonPosition == ALAnimatedButtonPositionBottomLeft || _animatedButtonPosition == ALAnimatedButtonPositionTopLeft) {
+        relX = -relX;
+    }
+    
+    if (_animatedButtonPosition == ALAnimatedButtonPositionTopLeft || _animatedButtonPosition == ALAnimatedButtonPositionTopRight) {
+        relY = -relY;
+    }
     
     UIImage * buttonImage = button.imageView.image;
     CGFloat width = buttonImage.size.width;

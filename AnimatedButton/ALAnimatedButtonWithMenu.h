@@ -30,7 +30,7 @@ typedef enum : NSUInteger {
 
 #pragma mark - Position
 
-@property (nonatomic) ALAnimatedButtonPosition animatedButtonPosition;
+@property (nonatomic, readonly) ALAnimatedButtonPosition animatedButtonPosition;
 @property (nonatomic) CGFloat animatedButtonVerticalMargin;
 @property (nonatomic) CGFloat animatedButtonHorizontalMargin;
 
@@ -44,6 +44,7 @@ typedef enum : NSUInteger {
 #pragma mark - Constructors
 
 - (id) initWithImage:(UIImage *) buttonImage inView:(UIView *) parentView;
+- (id) initWithImage:(UIImage *) buttonImage andPosition:(ALAnimatedButtonPosition) position inView:(UIView *) parentView;
 
 #pragma mark - Buttons
 

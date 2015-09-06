@@ -18,7 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    ALAnimatedButtonWithMenu * menuButton = [[ALAnimatedButtonWithMenu alloc] initWithImage:[UIImage imageNamed:@"button_plus"] inView:self.view];
+    ALAnimatedButtonWithMenu * menuButton = [[ALAnimatedButtonWithMenu alloc] initWithImage:[UIImage imageNamed:@"button_plus"] andPosition:ALAnimatedButtonPositionBottomRight inView:self.view];
+    
     
     [menuButton addMenuButton:[UIImage imageNamed:@"button_1"] withTag:1];
     [menuButton addMenuButton:[UIImage imageNamed:@"button_2"] withTag:2];
