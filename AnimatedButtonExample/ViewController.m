@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "ALAnimatedButtonWithMenu.h"
 
 @interface ViewController ()
 
@@ -16,7 +17,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    ALAnimatedButtonWithMenu * menuButton = [[ALAnimatedButtonWithMenu alloc] initWithImage:[UIImage imageNamed:@"button_plus"] inView:self.view];
+    
+    [menuButton addMenuButton:[UIImage imageNamed:@"button_1"] withTag:1];
+    [menuButton addMenuButton:[UIImage imageNamed:@"button_2"] withTag:2];
+    [menuButton addMenuButton:[UIImage imageNamed:@"button_3"] withTag:3];
 }
 
 - (void)didReceiveMemoryWarning {

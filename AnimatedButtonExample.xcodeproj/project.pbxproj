@@ -14,6 +14,7 @@
 		C56D376D1B9C52A700560CC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C56D376C1B9C52A700560CC3 /* Images.xcassets */; };
 		C56D37701B9C52A700560CC3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C56D376E1B9C52A700560CC3 /* LaunchScreen.xib */; };
 		C56D377C1B9C52A700560CC3 /* AnimatedButtonExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C56D377B1B9C52A700560CC3 /* AnimatedButtonExampleTests.m */; };
+		C56D37881B9C52D400560CC3 /* ALAnimatedButtonWithMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C56D37871B9C52D400560CC3 /* ALAnimatedButtonWithMenu.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		C56D37751B9C52A700560CC3 /* AnimatedButtonExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnimatedButtonExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56D377A1B9C52A700560CC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C56D377B1B9C52A700560CC3 /* AnimatedButtonExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimatedButtonExampleTests.m; sourceTree = "<group>"; };
+		C56D37861B9C52D400560CC3 /* ALAnimatedButtonWithMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALAnimatedButtonWithMenu.h; path = AnimatedButton/ALAnimatedButtonWithMenu.h; sourceTree = "<group>"; };
+		C56D37871B9C52D400560CC3 /* ALAnimatedButtonWithMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALAnimatedButtonWithMenu.m; path = AnimatedButton/ALAnimatedButtonWithMenu.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,7 @@
 		C56D37531B9C52A700560CC3 = {
 			isa = PBXGroup;
 			children = (
+				C56D37851B9C52AD00560CC3 /* AnimatedButton */,
 				C56D375E1B9C52A700560CC3 /* AnimatedButtonExample */,
 				C56D37781B9C52A700560CC3 /* AnimatedButtonExampleTests */,
 				C56D375D1B9C52A700560CC3 /* Products */,
@@ -117,6 +121,15 @@
 				C56D377A1B9C52A700560CC3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C56D37851B9C52AD00560CC3 /* AnimatedButton */ = {
+			isa = PBXGroup;
+			children = (
+				C56D37861B9C52D400560CC3 /* ALAnimatedButtonWithMenu.h */,
+				C56D37871B9C52D400560CC3 /* ALAnimatedButtonWithMenu.m */,
+			);
+			name = AnimatedButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +234,7 @@
 			files = (
 				C56D37681B9C52A700560CC3 /* ViewController.m in Sources */,
 				C56D37651B9C52A700560CC3 /* AppDelegate.m in Sources */,
+				C56D37881B9C52D400560CC3 /* ALAnimatedButtonWithMenu.m in Sources */,
 				C56D37621B9C52A700560CC3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
