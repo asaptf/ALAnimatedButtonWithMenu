@@ -15,8 +15,18 @@ typedef enum : NSUInteger {
     ALAnimatedButtonPositionTopLeft
 } ALAnimatedButtonPosition;
 
+@class ALAnimatedButtonWithMenu;
+
+@protocol ALAnimatedButtonWithMenuDelegate <NSObject>
+@required
+
+- (void) animatedMenuButtonSelected:(ALAnimatedButtonWithMenu *) animatedButtonWithMenu buttonTag:(NSInteger) buttonTag;
+
+@end
 
 @interface ALAnimatedButtonWithMenu : UIButton
+
+@property (strong) id <ALAnimatedButtonWithMenuDelegate> animatedButtonDelegate;
 
 #pragma mark - Position
 
@@ -30,7 +40,7 @@ typedef enum : NSUInteger {
 @property (nonatomic) CGFloat animatedButtonAlphaNormal;
 @property (nonatomic) CGFloat animatedButtonAlphaOpened;
 @property (nonatomic) CGFloat animatedButtonRadius;
-
+@property (nonatomic) Boolean animatedButtonHideMenuOnButtonClick;
 
 #pragma mark - Constructors
 

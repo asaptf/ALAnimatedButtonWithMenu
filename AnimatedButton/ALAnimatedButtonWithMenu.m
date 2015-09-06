@@ -43,7 +43,9 @@
     _animatedButtonAlphaNormal = 1.0f;
     _animatedButtonAlphaOpened = 0.5f;
     
-    _animatedButtonRadius = 110.f;
+    _animatedButtonRadius = 140.f;
+    
+    _animatedButtonHideMenuOnButtonClick = YES;
     
     buttonArray = [[NSMutableArray alloc] init];
 }
@@ -89,34 +91,28 @@
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:buttonImage forState:UIControlStateNormal];
     [button setTag:buttonTag];
+    [button addTarget:self action:@selector(menuButtonTap:) forControlEvents:UIControlEventTouchUpInside];
     [buttonArray addObject:button];
-}
-
-- (void) updateFramesForAllButtons {
-    int c = 1;
-    
-    for (UIButton * button in buttonArray) {
-        [self updateFrameForButton:button withId:c inTotalButtons:buttonArray.count];
-        c++;
-    }
 }
 
 - (void) updateFrameForButton:(UIButton *) button withId:(NSInteger) buttonId inTotalButtons:(NSUInteger) totalButtons  {
     // calculate relative X and Y
     
-    CGFloat relX = _animatedButtonRadius * sin(M_PI / (float) 2 + (M_PI / (float)(2 * totalButtons) ) * (buttonId - 1) );
-    CGFloat relY = _animatedButtonRadius * cos(M_PI / (float) 2 + (M_PI / (float)(2 * totalButtons) ) * (buttonId - 1) );
+//    CGFloat relX = _animatedButtonRadius * sin(M_PI / (float) 2 + M_PI / (float)(2 * totalButtons) * (buttonId - 1) );
+//    CGFloat relY = _animatedButtonRadius * cos(M_PI / (float) 2 + M_PI / (float)(2 * totalButtons) * (buttonId - 1) );
+    CGFloat relX = _animatedButtonRadius * sin( M_PI_2 + M_PI / (float)(2 * totalButtons) * (buttonId - 1) );
+    CGFloat relY = _animatedButtonRadius * cos( M_PI_2 + M_PI / (float)(2 * totalButtons) * (buttonId - 1) );
     
     UIImage * buttonImage = button.imageView.image;
     CGFloat width = buttonImage.size.width;
     CGFloat height = buttonImage.size.height;
-    CGFloat x = self.frame.origin.x - relX;
-    CGFloat y = self.frame.origin.y + relY;
+    CGFloat x = self.center.x - relX;
+    CGFloat y = self.center.y + relY;
     
-    CGRect frame = CGRectMake(x, y, width, height);
+    CGRect frame = CGRectMake(x - (width / 2.f), y - (height / 2.f), width, height);
     [button setFrame:frame];
     
-    NSLog(@"Coords: %f, %f", relX, relY);
+    //NSLog(@"Coords: %f, %f", relX, relY);
 }
 
 
@@ -130,16 +126,34 @@
     }
 }
 
+- (IBAction)menuButtonTap:(id)sender {
+    UIButton * buttonSender = (UIButton *) sender;
+    NSInteger buttonTag = buttonSender.tag;
+    
+    if (_animatedButtonHideMenuOnButtonClick) {
+        [self hideMenu];
+    }
+ 
+    if ([self.animatedButtonDelegate respondsToSelector:@selector(animatedMenuButtonSelected:buttonTag:)]) {
+        [self.animatedButtonDelegate animatedMenuButtonSelected:self buttonTag:buttonTag];
+    }
+}
+
+#pragma mark - Menu show/hide
+
 - (void) displayMenu {
     CGFloat alpha = _animatedButtonAlphaOpened;
+    NSInteger counter = 1;
     
     for (UIButton * button in buttonArray) {
         [button setCenter:self.center];
         [self.superview addSubview:button];
         
         [UIView animateWithDuration:0.2f delay:0.0 options: UIViewAnimationOptionCurveLinear animations:^{
-            [self updateFrameForButton:button withId:button.tag inTotalButtons:buttonArray.count];
+            [self updateFrameForButton:button withId:counter inTotalButtons:buttonArray.count];
         } completion:NULL];
+        
+        counter++;
     }
     
     [UIView animateWithDuration:0.2f delay:0.0 options: UIViewAnimationOptionCurveLinear animations:^{
